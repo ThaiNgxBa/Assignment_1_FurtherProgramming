@@ -6,17 +6,16 @@ import java.util.Objects;
 
 public class Customer {
     private String id;
-    private String name;
+    private String fullName;
     private Card insuranceCard;
     private List<Claim> claims;
-
-    public Customer(String id, String name) {
+    public Customer(String id, String fullName) {
         this.id = id;
-        this.name = name;
+        this.fullName = fullName;
         claims = new ArrayList<>();
     }
     public String getId() {return id;}
-    public String getName() {return name;}
+    public String getName() {return fullName;}
     public Card getInsuranceCard() {return insuranceCard;}
     public List<Claim> getClaims() {return claims;}
 
@@ -24,32 +23,10 @@ public class Customer {
         this.insuranceCard = insuranceCard;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        if (this instanceof PolicyHolder) {
-            sb.append("Customer Details (Policy Holder): \n");
-        } else if (this instanceof Dependant) {
-            sb.append("Customer Details (Dependant): \n");
-        }
-        sb.append(String.format("  - ID: %s\n", id));
-        sb.append(String.format("  - Name: %s\n", name));
-        sb.append(String.format("  - Insurance Card: %s\n", insuranceCard == null ? "None" : insuranceCard.getCardNumber()));
-        sb.append("  - Claims:\n");
-        if (claims.isEmpty()) {
-            sb.append("      None\n");
-        } else {
-            for (Claim claim : claims) {
-                sb.append(String.format("      - %s\n", claim.getId()));
-            }
-        }
-        return sb.toString();
-    }
-
     public String toData() {
         StringBuilder sb = new StringBuilder();
         sb.append(id).append(",");
-        sb.append(name).append(",");
+        sb.append(fullName).append(",");
         sb.append(insuranceCard == null ? null : insuranceCard.getCardNumber()).append(",");
         for (Claim claim : claims) {
             sb.append(claim.getId()).append(",");
@@ -72,26 +49,17 @@ public class Customer {
         }
         claims.add(newClaim);
     }
-
-    /**
-     * <p>
-     *     Remove claim will not set insured person in claim to null.
-     *     This is to prevent NullPointerException. Setting insured person
-     *     to another person will be handle in other functions
-     * </p>
-     * */
     public void removeClaim(Claim claim) {
         claims.remove(claim);
     }
 
-
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(Object object) {
+        if (this == object)
             return true;
-        if (obj == null || getClass() != obj.getClass())
+        if (object == null || getClass() != object.getClass())
             return false;
-        Customer customer = (Customer) obj;
+        Customer customer = (Customer) object;
         return Objects.equals(id, customer.id);
     }
 
@@ -100,4 +68,25 @@ public class Customer {
         return Objects.hash(id);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (this instanceof PolicyHolder) {
+            stringBuilder.append("Customer Details (Policy Holder): \n");
+        } else if (this instanceof Dependant) {
+            stringBuilder.append("Customer Details (Dependant): \n");
+        }
+        stringBuilder.append(String.format("  - ID: %s\n", id));
+        stringBuilder.append(String.format("  - Name: %s\n", fullName));
+        stringBuilder.append(String.format("  - Insurance Card: %s\n", insuranceCard == null ? "None" : insuranceCard.getCardNumber()));
+        stringBuilder.append("  - Claims:\n");
+        if (claims.isEmpty()) {
+            stringBuilder.append("      None\n");
+        } else {
+            for (Claim claim : claims) {
+                stringBuilder.append(String.format("      - %s\n", claim.getId()));
+            }
+        }
+        return stringBuilder.toString();
+    }
 }

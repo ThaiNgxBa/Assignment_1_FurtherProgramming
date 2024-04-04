@@ -10,7 +10,6 @@ public class PolicyHolder extends Customer{
         super(id, name);
         dependantList = new ArrayList<>();
     }
-
     public void addDependant(Dependant dependant) {
         this.dependantList.add(dependant);
     }
@@ -18,16 +17,7 @@ public class PolicyHolder extends Customer{
     public List<Dependant> getDependantList() {
         return dependantList;
     }
-
-    public List<String> getDependantsIDS() {
-        List<String> ids = new ArrayList<>();
-        for (Dependant d : dependantList) {
-            ids.add(d.getId());
-        }
-        return ids;
-    }
-
-    public boolean hasDependant(Dependant dependant) {
+    public boolean loadDependant(Dependant dependant) {
         return dependantList.contains(dependant);
     }
 
@@ -44,5 +34,13 @@ public class PolicyHolder extends Customer{
             sb.append("  - No Dependents\n");
         }
         return sb.toString();
+    }
+
+    public List<String> getDependantsIDS() {
+        List<String> ids = new ArrayList<>();
+        for (Dependant d : dependantList) {
+            ids.add(d.getId());
+        }
+        return ids;
     }
 }
