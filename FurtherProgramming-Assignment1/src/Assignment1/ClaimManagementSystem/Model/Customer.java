@@ -27,7 +27,7 @@ public class Customer {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        if (this instanceof Policy) {
+        if (this instanceof PolicyHolder) {
             sb.append("Customer Details (Policy Holder): \n");
         } else if (this instanceof Dependant) {
             sb.append("Customer Details (Dependant): \n");
@@ -54,8 +54,8 @@ public class Customer {
         for (Claim claim : claims) {
             sb.append(claim.getId()).append(",");
         }
-        if (this instanceof Policy) {
-            for (String id : ((Policy) this).getDependantsIDS()) {
+        if (this instanceof PolicyHolder) {
+            for (String id : ((PolicyHolder) this).getDependantsIDS()) {
                 sb.append(id).append(",");
             }
         }

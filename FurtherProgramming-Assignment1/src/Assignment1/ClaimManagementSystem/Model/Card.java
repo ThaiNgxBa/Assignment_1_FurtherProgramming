@@ -5,10 +5,10 @@ import java.time.LocalDate;
 public class Card {
     private String cardNumber;
     private Customer cardHolder;
-    private Policy policyOwner;
+    private PolicyHolder policyOwner;
     private LocalDate expirationDate;
 
-    public Card(String cardNumber, Customer cardHolder, Policy policyOwner, LocalDate expirationDate) {
+    public Card(String cardNumber, Customer cardHolder, PolicyHolder policyOwner, LocalDate expirationDate) {
         this.cardNumber = cardNumber;
         this.cardHolder = cardHolder;
         this.policyOwner = policyOwner;
@@ -24,7 +24,7 @@ public class Card {
         return cardHolder;
     }
 
-    public Policy getPolicyOwner() {
+    public PolicyHolder getPolicyOwner() {
         return policyOwner;
     }
 
