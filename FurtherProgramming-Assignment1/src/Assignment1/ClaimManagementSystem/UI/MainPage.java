@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class MainPage {
     public static void run() {
         System.out.println("Welcome to the Claim Management System!");
-        System.out.println("=======================================");
+        System.out.println("---------------------------------------");
         displayOptions();
     }
 
@@ -41,7 +41,7 @@ public class MainPage {
                 break;
             default:
                 System.out.println();
-                System.out.println("⚠️ Invalid choice. Please select a valid option.");
+                System.out.println("⚠️ Invalid option. Please select a valid option.");
                 displayOptions();
                 break;
         }

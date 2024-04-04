@@ -36,7 +36,7 @@ public class ClaimPage {
                 break;
             default:
                 System.out.println();
-                System.out.println("⚠️ Invalid choice. Please select a valid option.");
+                System.out.println("⚠️ Invalid option. Please select a valid option.");
                 displayOptions();
                 break;
         }
